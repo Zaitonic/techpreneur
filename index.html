@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Affordable and delicious meals for students at Colegio de Montalban. Discover budget-friendly Filipino and Asian-inspired dishes.">
+  <meta name="keywords" content="student food, affordable meals, Colegio de Montalban, CDM Eats, budget eats, Filipino food">
+  <title>CDM Student Eats - Affordable Foods</title>
+  <link rel="icon" href="https://i.imgur.com/8Q9JZ9A.jpeg" type="image/jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary: #8E354A;
+      --secondary: #F8B500;
+      --accent: #4A9C8E;
+      --light: #FFF8F0;
+      --dark: #333333;
+      --white: #FFFFFF;
+      --gradient: linear-gradient(135deg, var(--primary), var(--accent));
+      --sale-red: #FF4757;
+      --favorite-pink: #FF4081;
+      --coupon-blue: #2E86DE;
+    }
+    
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      font-family: 'Roboto', sans-serif;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    .header {
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                  url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') 
+                  center/cover no-repeat fixed;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+    }
+    
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(142, 53, 74, 0.95);
+      z-index: 1000;
+      padding: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+    }
+    
+    .navbar.scrolled {
+      padding: 15px 0;
+      background: rgba(142, 53, 74, 0.98);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+    
+    .logo span {
+      color: var(--secondary);
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 30px;
+    }
+    
+    .nav-links a {
+      color: var(--white);
+      font-weight: 500;
+      transition: color 0.3s, transform 0.3s;
+      position: relative;
+      font-size: 1.1rem;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .nav-links a:hover {
+      color: var(--secondary);
+      transform: translateY(-2px);
+    }
+    
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+    
+    .header-content {
+      margin-top: 100px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease forwards 0.6s;
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .header h1 {
+      font-size: 4rem;
+      text-shadow: 3px 3px 12px rgba(0,0,0,0.6);
+      margin-bottom: 25px;
+      line-height: 1.1;
+      font-weight: 700;
+    }
+    
+    .header p {
+      font-size: 1.4rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      opacity: 0.9;
+    }
+    
+    .hero-button {
+      background: var(--gradient);
+      color: var(--white);
+      padding: 15px 35px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .hero-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+      z-index: -1;
+    }
+    
+    .hero-button:hover::before {
+      left: 100%;
+    }
+    
+    .hero-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    
+    /* Section Titles */
+    .section-title {
+      text-align: center;
+      margin: 100px 0 60px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .section-title.animated {
+      animation: fadeInUp 1s ease forwards;
+    }
+    
+    .section-title h2 {
+      font-size: 3rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+    
+    .section-title p {
+      color: var(--dark);
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    
+    /* Food Cards */
+    .food-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin: 50px auto;
+    }
+    
+    .food-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+    }
+    
+    .food-card.animated {
+      animation: fadeInUp 1s ease forwards;
+    }
+    
+    .food-card:nth-child(1) { animation-delay: 0.2s; }
+    .food-card:nth-child(2) { animation-delay: 0.4s; }
+    .food-card:nth-child(3) { animation-delay: 0.6s; }
+    .food-card:nth-child(4) { animation-delay: 0.8s; }
+    
+    .food-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    
+    .food-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    
+    .food-card:hover .food-img {
+      transform: scale(1.08);
+    }
+    
+    .food-content {
+      padding: 25px;
+      text-align: center;
+    }
+    
+    .food-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: var(--dark);
+      font-weight: 600;
+    }
+    
+    .food-card p {
+      color: #666;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+    
+    .food-price {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+      display: block;
+    }
+    
+    .food-rating {
+      margin-bottom: 15px;
+      color: var(--secondary);
+      font-size: 1.2rem;
+    }
+    
+    .food-btn {
+      background: var(--gradient);
+      color: var(--white);
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: all 0.3s;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .food-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    
+    /* NEW: Badges for Student Favorite, On Sale, and Discount */
+    .badge {
+      position: absolute;
+      top: 15px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      color: white;
+      font-weight: 600;
+      font-size: 0.8rem;
+      z-index: 10;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    .badge.student-favorite {
+      left: 15px;
+      background-color: var(--favorite-pink);
+    }
+    
+    .badge.on-sale {
+      right: 15px;
+      background-color: var(--sale-red);
+    }
+    
+    .badge.discount {
+      left: 15px;
+      top: 50px;
+      background-color: var(--coupon-blue);
+    }
+    
+    .price-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    
+    .original-price {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 1rem;
+    }
+    
+    .discount-price {
+      color: var(--sale-red);
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    
+    /* NEW: Coupons Section */
+    .coupons-section {
+      background: linear-gradient(135deg, #FF9A9E 0%, #FAD0C4 100%);
+      padding: 80px 0;
+      margin: 80px 0;
+      border-radius: 20px;
+    }
+    
+    .coupons-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .coupon-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      border: 2px dashed var(--coupon-blue);
+    }
+    
+    .coupon-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .coupon-header {
+      background: var(--coupon-blue);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .coupon-header h3 {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+    }
+    
+    .coupon-body {
+      padding: 25px;
+      text-align: center;
+    }
+    
+    .coupon-code {
+      background: #f8f8f8;
+      padding: 15px;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin: 20px 0;
+      border: 1px dashed #ddd;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .coupon-code:hover {
+      background: #f0f0f0;
+    }
+    
+    .coupon-terms {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 15px;
+    }
+    
+    .copy-btn {
+      background: var(--coupon-blue);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 10px;
+    }
+    
+    .copy-btn:hover {
+      background: #1a6fc4;
+      transform: translateY(-3px);
+    }
+    
+    /* NEW: Deals Section */
+    .deals-section {
+      padding: 80px 0;
+      background: #f9f9f9;
+    }
+    
+    .deals-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .deal-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .deal-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .deal-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .deal-content {
+      padding: 25px;
+    }
+    
+    .deal-title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    
+    .deal-description {
+      color: #666;
+      margin-bottom: 15px;
+    }
+    
+    .deal-price {
+      font-weight: 700;
+      color: var(--sale-red);
+      font-size: 1.3rem;
+    }
+    
+    .deal-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--sale-red);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    
+    /* Gallery */
+    .gallery {
+      background: linear-gradient(to bottom, #f9f9f9, var(--light));
+      padding: 100px 0;
+    }
+    
+    .gallery-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 280px;
+      opacity: 0;
+      transform: translateY(30px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .gallery-item.animated {
+      animation: fadeInUp 1s ease forwards;
+    }
+    
+    .gallery-item:nth-child(1) { animation-delay: 0.2s; }
+    .gallery-item:nth-child(2) { animation-delay: 0.4s; }
+    .gallery-item:nth-child(3) { animation-delay: 0.6s; }
+    .gallery-item:nth-child(4) { animation-delay: 0.8s; }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.12);
+    }
+    
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      color: var(--white);
+      padding: 20px;
+      transform: translateY(50%);
+      transition: transform 0.4s ease;
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0);
+    }
+    
+    /* About Section */
+    .about {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    
+    .about-text {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    
+    .about-text.animated {
+      animation: fadeInLeft 1.2s ease forwards;
+    }
+    
+    @keyframes fadeInLeft {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .about-text h2 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+    
+    .about-text p {
+      margin-bottom: 20px;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: #555;
+    }
+    
+    .about-image {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    
+    .about-image.animated {
+      animation: fadeInRight 1.2s ease forwards;
+    }
+    
+    @keyframes fadeInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .about-image img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: transform 0.4s;
+    }
+    
+    .about-image:hover img {
+      transform: scale(1.03);
+    }
+    
+    /* Contact Section */
+    .contact {
+      background: linear-gradient(to bottom, #f9f9f9, var(--light));
+      padding: 100px 0;
+    }
+    
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+    
+    .contact-info {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    
+    .contact-info.animated {
+      animation: fadeInLeft 1.2s ease forwards;
+    }
+    
+    .contact-info h2 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+    
+    .contact-info p {
+      margin-bottom: 25px;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: #555;
+    }
+    
+    .contact-details {
+      margin-top: 40px;
+    }
+    
+    .contact-details div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+    
+    .contact-details i {
+      width: 50px;
+      height: 50px;
+      background: var(--gradient);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .contact-form {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    
+    .contact-form.animated {
+      animation: fadeInRight 1.2s ease forwards;
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 500;
+      color: var(--dark);
+      font-size: 1.1rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(142, 53, 74, 0.1);
+      outline: none;
+    }
+    
+    .form-group textarea {
+      height: 180px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background: var(--gradient);
+      color: var(--white);
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    
+    /* Modals */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+    
+    .modal-show {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .modal-container {
+      background: var(--white);
+      border-radius: 20px;
+      width: 90%;
+      max-width: 600px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transform: translateY(-50px);
+      transition: transform 0.4s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    
+    .modal-show .modal-container {
+      transform: translateY(0);
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #999;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    
+    .modal-close:hover {
+      color: var(--primary);
+    }
+    
+    .reviews-modal-container h2 {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+    
+    .average-rating {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .rating-value {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--secondary);
+      display: block;
+    }
+
+    .stars {
+      font-size: 1.8rem;
+      color: var(--secondary);
+    }
+
+    .fa-star.filled {
+      color: var(--secondary);
+    }
+
+    .fa-star.unfilled {
+      color: #ddd;
+    }
+
+    .comments-section {
+      max-height: 350px;
+      overflow-y: auto;
+      padding-right: 15px;
+    }
+
+    .comment-card {
+      background: #f8f8f8;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .comment-card strong {
+      font-size: 1.1rem;
+      color: var(--primary);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .comment-card p {
+      font-style: italic;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 80px 0 40px;
+      text-align: center;
+    }
+    
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+    
+    .footer-logo span {
+      color: var(--secondary);
+    }
+    
+    .footer p {
+      margin-bottom: 30px;
+      opacity: 0.8;
+      font-size: 1.1rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .social-links a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      transition: all 0.3s;
+      color: var(--white);
+      font-size: 1.2rem;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    
+    .copyright {
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    .copyright span {
+      color: var(--secondary);
+      font-weight: 600;
+    }
+    
+    /* Scroll to top button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      width: 60px;
+      height: 60px;
+      background: var(--gradient);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+      z-index: 999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      font-size: 1.5rem;
+    }
+    
+    .scroll-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .scroll-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .about-content,
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .about-image,
+      .contact-form {
+        order: -1;
+      }
+      
+      .about-text,
+      .about-image,
+      .contact-info,
+      .contact-form {
+        transform: none;
+      }
+      
+      .about-text.animated,
+      .about-image.animated,
+      .contact-info.animated,
+      .contact-form.animated {
+        animation: fadeInUp 1s ease forwards;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 3rem;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: var(--primary);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s ease;
+      }
+      
+      .nav-links.active {
+        left: 0;
+      }
+      
+      .nav-links li {
+        margin: 20px 0;
+      }
+      
+      .nav-links a {
+        font-size: 1.5rem;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      .section-title h2 {
+        font-size: 2.5rem;
+      }
+      
+      .food-container,
+      .gallery-container,
+      .coupons-container,
+      .deals-container {
+        gap: 30px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .header p {
+        font-size: 1.2rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .food-container,
+      .gallery-container,
+      .coupons-container,
+      .deals-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .food-card,
+      .coupon-card,
+      .deal-card {
+        max-width: 90%;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar" aria-label="Main navigation">
+    <div class="container nav-container">
+      <a href="#home" class="logo">CDM <span>Eats</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#food">Menu</a></li>
+        <li><a href="#deals">Deals</a></li>
+        <li><a href="#coupons">Coupons</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="header" id="home" role="banner">
+    <div class="container header-content">
+      <h1>Colegio de Montalban<br>Affordable Student Foods</h1>
+      <p>Delicious and budget-friendly meals crafted for students. Visit us at Colegio de Montalban Campus for walk-in service!</p>
+      <a href="#food" class="hero-button">Explore Menu</a>
+    </div>
+  </header>
+
+  <!-- FOOD SECTION -->
+  <section id="food" class="container">
+    <div class="section-title" id="foodSectionTitle">
+      <h2>Student Favorites</h2>
+      <p>Discover our budget-friendly meals that fuel your day without breaking the bank</p>
+    </div>
+    
+    <div class="food-container">
+      <div class="food-card" data-food-id="silog">
+        <div class="badge student-favorite">
+          <i class="fas fa-heart"></i> Student Favorite
+        </div>
+        <div class="badge on-sale">
+          <i class="fas fa-tag"></i> On Sale
+        </div>
+        <img src="SILOG.jpg" alt="CDMSilog: Garlic rice, egg, and choice of protein" class="food-img" loading="lazy">
+        <div class="food-content">
+          <h3>CDMSilog</h3>
+          <p>Garlic rice, egg, and your choice of protein - a Filipino breakfast favorite any time of day</p>
+          <div class="price-container">
+            <span class="original-price">₱45</span>
+            <span class="discount-price">₱30</span>
+          </div>
+          <div class="food-rating">
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star-half-alt filled"></i>
+            <span> (4.7)</span>
+          </div>
+          <button class="food-btn" data-food-id="silog" aria-label="View reviews for CDMSilog">View Reviews</button>
+        </div>
+      </div>
+      
+      <div class="food-card" data-food-id="pancit">
+        <div class="badge student-favorite">
+          <i class="fas fa-heart"></i> Student Favorite
+        </div>
+        <div class="badge discount">
+          <i class="fas fa-ticket-alt"></i> 15% OFF
+        </div>
+        <img src="CANTON.jpg" alt="Pancit Canton: Stir-fried noodles with vegetables and meat or seafood" class="food-img" loading="lazy">
+        <div class="food-content">
+          <h3>Pancit Canton</h3>
+          <p>Stir-fried noodles with vegetables and your choice of meat or seafood</p>
+          <div class="price-container">
+            <span class="original-price">₱35</span>
+            <span class="discount-price">₱25</span>
+          </div>
+          <div class="food-rating">
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="far fa-star unfilled"></i>
+            <span> (4.3)</span>
+          </div>
+          <button class="food-btn" data-food-id="pancit" aria-label="View reviews for Pancit Canton">View Reviews</button>
+        </div>
+      </div>
+      
+      <div class="food-card" data-food-id="kbop">
+        <div class="badge on-sale">
+          <i class="fas fa-tag"></i> On Sale
+        </div>
+        <img src="KOREAN.jpg" alt="K-Bop Bwol: Korean-style rice bowl with protein and vegetables" class="food-img" loading="lazy">
+        <div class="food-content">
+          <h3>K-Bop Bwol</h3>
+          <p>Korean-style rice bowl with your choice of protein, vegetables, and signature sauce</p>
+          <div class="price-container">
+            <span class="original-price">₱50</span>
+            <span class="discount-price">₱35</span>
+          </div>
+          <div class="food-rating">
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star-half-alt filled"></i>
+            <span> (4.6)</span>
+          </div>
+          <button class="food-btn" data-food-id="kbop" aria-label="View reviews for K-Bop Bwol">View Reviews</button>
+        </div>
+      </div>
+      
+      <div class="food-card" data-food-id="siomai">
+        <div class="badge student-favorite">
+          <i class="fas fa-heart"></i> Student Favorite
+        </div>
+        <img src="SIOMAI.jpg" alt="Siomai Rice: Steamed dumplings with garlic rice" class="food-img" loading="lazy">
+        <div class="food-content">
+          <h3>Siomai Rice</h3>
+          <p>Steamed pork and shrimp dumplings served with garlic rice and soy-vinegar sauce</p>
+          <span class="food-price">₱20 - ₱30</span>
+          <div class="food-rating">
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="far fa-star unfilled"></i>
+            <span> (4.4)</span>
+          </div>
+          <button class="food-btn" data-food-id="siomai" aria-label="View reviews for Siomai Rice">View Reviews</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEALS SECTION -->
+  <section id="deals" class="deals-section">
+    <div class="container">
+      <div class="section-title" id="dealsSectionTitle">
+        <h2>Special Deals</h2>
+        <p>Don't miss out on our limited-time offers and combo meals</p>
+      </div>
+      
+      <div class="deals-container">
+        <div class="deal-card">
+          <div class="deal-badge">Limited Time</div>
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Student Combo Meal" class="deal-img">
+          <div class="deal-content">
+            <h3 class="deal-title">Student Combo Meal</h3>
+            <p class="deal-description">Get a main dish, rice, and a drink for a special student price</p>
+            <div class="price-container">
+              <span class="original-price">₱65</span>
+              <span class="discount-price">₱50</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="deal-card">
+          <div class="deal-badge">Best Seller</div>
+          <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Family Pack" class="deal-img">
+          <div class="deal-content">
+            <h3 class="deal-title">Family Pack</h3>
+            <p class="deal-description">Perfect for sharing with friends or family. Includes 4 main dishes and rice</p>
+            <div class="price-container">
+              <span class="original-price">₱180</span>
+              <span class="discount-price">₱150</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="deal-card">
+          <div class="deal-badge">New</div>
+          <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Breakfast All Day" class="deal-img">
+          <div class="deal-content">
+            <h3 class="deal-title">Breakfast All Day</h3>
+            <p class="deal-description">Your favorite breakfast silog meals available anytime</p>
+            <div class="price-container">
+              <span class="original-price">₱45</span>
+              <span class="discount-price">₱35</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUPONS SECTION -->
+  <section id="coupons" class="coupons-section">
+    <div class="container">
+      <div class="section-title" id="couponsSectionTitle">
+        <h2>Student Discount Coupons</h2>
+        <p>Save more with these exclusive student discount coupons</p>
+      </div>
+      
+      <div class="coupons-container">
+        <div class="coupon-card">
+          <div class="coupon-header">
+            <h3>20% OFF</h3>
+            <p>Your Entire Order</p>
+          </div>
+          <div class="coupon-body">
+            <p>Use this code for 20% off your entire order</p>
+            <div class="coupon-code" id="coupon1">CDMEATS20</div>
+            <button class="copy-btn" data-coupon="CDMEATS20">Copy Code</button>
+            <p class="coupon-terms">Valid for first-time customers only. Minimum purchase of ₱50 required.</p>
+          </div>
+        </div>
+        
+        <div class="coupon-card">
+          <div class="coupon-header">
+            <h3>BUY 1 GET 1</h3>
+            <p>On Selected Items</p>
+          </div>
+          <div class="coupon-body">
+            <p>Buy one, get one free on selected menu items</p>
+            <div class="coupon-code" id="coupon2">CDMBOGO</div>
+            <button class="copy-btn" data-coupon="CDMBOGO">Copy Code</button>
+            <p class="coupon-terms">Valid on Pancit Canton and Siomai Rice only. Cannot be combined with other offers.</p>
+          </div>
+        </div>
+        
+        <div class="coupon-card">
+          <div class="coupon-header">
+            <h3>FREE DRINK</h3>
+            <p>With Any Meal</p>
+          </div>
+          <div class="coupon-body">
+            <p>Get a free drink with any meal purchase</p>
+            <div class="coupon-code" id="coupon3">CDMDRINK</div>
+            <button class="copy-btn" data-coupon="CDMDRINK">Copy Code</button>
+            <p class="coupon-terms">Free regular-sized soft drink with any meal purchase of ₱40 or more.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <div class="section-title" id="gallerySectionTitle">
+        <h2>Food Gallery</h2>
+        <p>Feast your eyes on our delicious and affordable student meals</p>
+      </div>
+      
+      <div class="gallery-container">
+        <div class="gallery-item">
+          <img src="SILOG.jpg" alt="Budget-friendly silog meals" loading="lazy">
+          <div class="gallery-caption">Budget-friendly silog meals</div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="CANTON.jpg" alt="Hearty Pancit Canton dishes" loading="lazy">
+          <div class="gallery-caption">Hearty Pancit Canton dishes</div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="KOREAN.jpg" alt="Korean-style K-Bop Bwol" loading="lazy">
+          <div class="gallery-caption">Korean-style K-Bop Bwol</div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="SIOMAI.jpg" alt="Delicious Siomai Rice" loading="lazy">
+          <div class="gallery-caption">Delicious Siomai Rice</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="section-title" id="aboutSectionTitle">
+        <h2>About CDM Eats</h2>
+        <p>Discover our mission to fuel student success with tasty, affordable meals</p>
+      </div>
+      
+      <div class="about-content">
+        <div class="about-text" id="aboutText">
+          <h2>We're Here to Serve Students</h2>
+          <p>CDM Eats was founded with one simple mission: to provide affordable, delicious, and nutritious meals to the students of Colegio de Montalban.</p>
+          <p>We understand the challenges students face when it comes to budgeting for food while focusing on their studies. That's why we've created a menu that offers great value without compromising on taste or quality.</p>
+          <p>Our team is committed to serving meals that not only satisfy hunger but also provide the energy needed for a full day of classes and activities.</p>
+          <p>Find us at the Colegio de Montalban Campus, Rodriguez, Rizal. We offer walk-in service only for easy access to all students.</p>
+        </div>
+        <div class="about-image" id="aboutImage">
+          <img src="https://images.unsplash.com/photo-1554679665-f5537f187268?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Students enjoying meals at CDM Eats" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title" id="contactSectionTitle">
+        <h2>Contact Us</h2>
+        <p>We're here to answer your questions and hear your feedback</p>
+      </div>
+      
+      <div class="contact-container">
+        <div class="contact-info" id="contactInfo">
+          <h2>Get In Touch</h2>
+          <p>Have questions about our menu, want to provide feedback, or need catering for a student event? Reach out to us using the contact form or through the details below.</p>
+          <p>Our store is located inside Colegio de Montalban Campus, Rodriguez, Rizal. Come visit us for walk-in service!</p>
+          
+          <div class="contact-details">
+            <div>
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+              <span>Colegio de Montalban Campus, Rodriguez, Rizal</span>
+            </div>
+            <div>
+              <i class="fas fa-phone" aria-hidden="true"></i>
+              <span>+63 912 345 6789</span>
+            </div>
+            <div>
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <span>info@cdmeats.com</span>
+            </div>
+            <div>
+              <i class="fas fa-clock" aria-hidden="true"></i>
+              <span>Monday - Saturday: 7AM - 8PM</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form" id="contactForm">
+          <form id="contactFormElement">
+            <div class="form-group">
+              <label for="contactName">Your Name</label>
+              <input type="text" id="contactName" required aria-required="true">
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Your Email</label>
+              <input type="email" id="contactEmail" required aria-required="true">
+            </div>
+            <div class="form-group">
+              <label for="contactSubject">Subject</label>
+              <input type="text" id="contactSubject" required aria-required="true">
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Your Message</label>
+              <textarea id="contactMessage" required aria-required="true"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS MODAL -->
+  <div class="modal-overlay" id="reviewsModal" role="dialog" aria-modal="true" aria-labelledby="reviewsTitle">
+    <div class="modal-container reviews-modal-container">
+      <div class="modal-header">
+        <h2 id="reviewsTitle">Food Reviews</h2>
+        <button class="modal-close" id="closeReviewsModal" aria-label="Close reviews modal">&times;</button>
+      </div>
+      <div class="average-rating" id="averageRating">
+        <span class="rating-value">4.5</span>
+        <div class="stars">
+          <i class="fas fa-star filled"></i>
+          <i class="fas fa-star filled"></i>
+          <i class="fas fa-star filled"></i>
+          <i class="fas fa-star filled"></i>
+          <i class="fas fa-star-half-alt filled"></i>
+        </div>
+        <p>Based on reviews</p>
+      </div>
+      <div class="comments-section" id="commentsSection">
+        <!-- Comments will be populated here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-content">
+      <a href="#home" class="footer-logo">CDM <span>Eats</span></a>
+      <p>Affordable and delicious meals for Colegio de Montalban students. Located at Colegio de Montalban Campus - Walk-in only!</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="copyright container">
+      &copy; 2025 CDM Eats. All rights reserved. Designed with <span>♥</span> for students.
+    </div>
+  </footer>
+
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-to-top" id="scrollTop" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Smooth scrolling for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+      menuToggle.querySelector('i').classList.toggle('fa-bars');
+      menuToggle.querySelector('i').classList.toggle('fa-times');
+    });
+
+    // Navbar Scrolled
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Scroll to Top
+    const scrollTop = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTop.classList.add('visible');
+      } else {
+        scrollTop.classList.remove('visible');
+      }
+    });
+    scrollTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Animations on Scroll
+    const elementsToAnimate = document.querySelectorAll('.section-title, .food-card, .gallery-item, .about-text, .about-image, .contact-info, .contact-form, .coupon-card, .deal-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, { threshold: 0.1 });
+    elementsToAnimate.forEach(el => observer.observe(el));
+
+    // Reviews Data (Updated with K-drama artists)
+    const reviewsData = {
+      silog: {
+        title: 'CDMSilog Reviews',
+        average: 4.7,
+        stars: '<i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="fas fa-star-half-alt filled"></i>',
+        count: 120,
+        comments: [
+          {name: 'Lee Jong Suk', comment: 'Grabe sobrang mura na sobrang sarap pa! Parang pang-resto ang lasa pero presyong estudyante lang!'},
+          {name: 'Moon Ga Young', comment: 'Napakasarap talaga! Kahit araw-arawin ko \'to hindi ako magsasawa! Sulit na sulit ang pera!'},
+          {name: 'Go Youn Jung', comment: 'Ang sarap-sarap talaga! Hindi ako makapaniwala na ganito kasarap ang tinitinda dito sa ganitong presyo!'}
+        ]
+      },
+      pancit: {
+        title: 'Pancit Canton Reviews',
+        average: 4.3,
+        stars: '<i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="far fa-star unfilled"></i>',
+        count: 85,
+        comments: [
+          {name: 'Park Seo Joon', comment: 'OMG! Sobrang sarap ng Pancit Canton dito! Parang kinain ko na lang ang buong pagkain sa isang subo!'},
+          {name: 'Kim Ji Won', comment: 'Ang saraaaap! Hindi ko na kailangan maghanap ng iba pang kainan! Dito na ako forever!'},
+          {name: 'Cha Eun Woo', comment: 'Napakasarap talaga! Kahit wala akong pera, ipanghihiraman ko pa rin para makakain dito!'}
+        ]
+      },
+      kbop: {
+        title: 'K-Bop Bwol Reviews',
+        average: 4.6,
+        stars: '<i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="fas fa-star-half-alt filled"></i>',
+        count: 110,
+        comments: [
+          {name: 'Hyun Bin', comment: 'Ang sarap talaga ng K-Bop Bwol dito! Para akong nasa Korea! Sobrang authentic ng lasa!'},
+          {name: 'Son Ye Jin', comment: 'Grabe! Hindi ko na kailangan pumunta ng Korea! Dito na lang ako kakain araw-araw!'},
+          {name: 'Lee Min Ho', comment: 'Sobrang sarap! Kahit kinain ko na \'to kahapon, gusto ko pa rin ulit-ulitin!'}
+        ]
+      },
+      siomai: {
+        title: 'Siomai Rice Reviews',
+        average: 4.4,
+        stars: '<i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="fas fa-star filled"></i><i class="far fa-star unfilled"></i>',
+        count: 95,
+        comments: [
+          {name: 'Ji Chang Wook', comment: 'Ang sarap-sarap ng Siomai Rice dito! Para akong nanaginip sa sobrang sarap!'},
+          {name: 'Park Min Young', comment: 'Hindi ako makapaniwala sa sarap! Parang gusto kong umiyak sa tuwa every time kumakain ako dito!'},
+          {name: 'Kim Soo Hyun', comment: 'Sobrang sarap talaga! Kahit mayaman ako, dito pa rin ako kakain araw-araw!'}
+        ]
+      }
+    };
+
+    // Reviews Modal
+    const reviewsModal = document.getElementById('reviewsModal');
+    const closeReviewsModal = document.getElementById('closeReviewsModal');
+    const reviewsTitle = document.getElementById('reviewsTitle');
+    const averageRating = document.getElementById('averageRating');
+    const commentsSection = document.getElementById('commentsSection');
+
+    const reviewBtns = document.querySelectorAll('.food-btn');
+    reviewBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const foodId = btn.dataset.foodId;
+        const data = reviewsData[foodId];
+        if (data) {
+          reviewsTitle.textContent = data.title;
+          averageRating.innerHTML = `
+            <span class="rating-value">${data.average}</span>
+            <div class="stars">${data.stars}</div>
+            <p>Based on ${data.count} reviews</p>
+          `;
+          commentsSection.innerHTML = data.comments.map(comment => `
+            <div class="comment-card">
+              <strong>${comment.name}</strong>
+              <p>"${comment.comment}"</p>
+            </div>
+          `).join('');
+          reviewsModal.classList.add('modal-show');
+          reviewsModal.focus(); // Improve accessibility
+        }
+      });
+    });
+
+    closeReviewsModal.addEventListener('click', () => {
+      reviewsModal.classList.remove('modal-show');
+    });
+    reviewsModal.addEventListener('click', (e) => {
+      if (e.target === reviewsModal) {
+        reviewsModal.classList.remove('modal-show');
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && reviewsModal.classList.contains('modal-show')) {
+        reviewsModal.classList.remove('modal-show');
+      }
+    });
+
+    // Contact Form (Added basic validation)
+    const contactFormElement = document.getElementById('contactFormElement');
+    contactFormElement.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Simple client-side validation
+      const name = document.getElementById('contactName').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      const subject = document.getElementById('contactSubject').value.trim();
+      const message = document.getElementById('contactMessage').value.trim();
+      if (name && email && subject && message) {
+        alert('Message sent! Thank you.');
+        contactFormElement.reset();
+      } else {
+        alert('Please fill in all fields.');
+      }
+    });
+
+    // NEW: Coupon Copy Functionality
+    const copyButtons = document.querySelectorAll('.copy-btn');
+    copyButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const couponCode = button.getAttribute('data-coupon');
+        navigator.clipboard.writeText(couponCode).then(() => {
+          // Change button text temporarily
+          const originalText = button.textContent;
+          button.textContent = 'Copied!';
+          button.style.background = '#4CAF50';
+          
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = '';
+          }, 2000);
+        }).catch(err => {
+          console.error('Failed to copy: ', err);
+          alert('Failed to copy coupon code. Please try again.');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
