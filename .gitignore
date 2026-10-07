@@ -1,0 +1,6 @@
+composer.phar
+cacert.pem
+*.log
+install_log.txt
+.DS_Store
+Thumbs.db
